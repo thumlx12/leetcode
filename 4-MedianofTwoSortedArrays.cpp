@@ -65,16 +65,16 @@ double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
     }
 }
 
-int main() {
-    vector<int> a = {1, 2};
-    vector<int> b = {3, 4};
-    cout << findMedianSortedArrays(a, b) << endl;
-
-    vector<int> a1 = {1, 2};
-    vector<int> b1 = {1, 2};
-    cout << findMedianSortedArrays(a1, b1) << endl;
-
-    vector<int> a2 = {1};
-    vector<int> b2 = {2, 3, 4, 5, 6};
-    cout << findMedianSortedArrays(a2, b2) << endl;
-}
+//int main() {
+//    vector<int> a = {1, 2};
+//    vector<int> b = {3, 4};
+//    cout << findMedianSortedArrays(a, b) << endl;
+//
+//    vector<int> a1 = {1, 2};
+//    vector<int> b1 = {1, 2};
+//    cout << findMedianSortedArrays(a1, b1) << endl;
+//
+//    vector<int> a2 = {1};
+//    vector<int> b2 = {2, 3, 4, 5, 6};
+//    cout << findMedianSortedArrays(a2, b2) << endl;
+//}
