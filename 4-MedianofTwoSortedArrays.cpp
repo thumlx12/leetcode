@@ -10,6 +10,7 @@
 using namespace std;
 
 /*
+ * wrong function
  * int findKth(int k, vector<int> &nums1, int lo1, vector<int> &nums2, int lo2) {
     if ((nums1.size() - lo1) > (nums2.size() - lo2)) {
         return findKth(k, nums2, lo2, nums1, lo1);
