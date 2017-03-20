@@ -79,7 +79,7 @@ string longestPalindrome(string s) {
     return s.substr(lo, length);
 }
 /*
- * Extension based on center point.
+ * Extension based on center points.
  */
 string longestPalindrome2(string s) {
     const int length = s.size();
@@ -117,15 +117,15 @@ string longestPalindrome2(string s) {
 }
 
 
-int main() {
-    string a1 = "bab";
-    string a2 = "baba";
-    string a3 = "babad";
-    string a4 = "hannah";
-    string a5 = "cbbd";
-    cout << longestPalindrome(a1) << endl;
-    cout << longestPalindrome(a2) << endl;
-    cout << longestPalindrome(a3) << endl;
-    cout << longestPalindrome(a4) << endl;
-    cout << longestPalindrome(a5) << endl;
-}
+//int main() {
+//    string a1 = "bab";
+//    string a2 = "baba";
+//    string a3 = "babad";
+//    string a4 = "hannah";
+//    string a5 = "cbbd";
+//    cout << longestPalindrome(a1) << endl;
+//    cout << longestPalindrome(a2) << endl;
+//    cout << longestPalindrome(a3) << endl;
+//    cout << longestPalindrome(a4) << endl;
+//    cout << longestPalindrome(a5) << endl;
+//}
