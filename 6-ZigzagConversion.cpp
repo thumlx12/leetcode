@@ -26,7 +26,7 @@ string convert(string s, int numRows) {
         } else {
             layerIndex = numRows - 2 - unitIndex % numRows;
         }
-        strLayer[layerIndex].push_back(s[i]);
+        strLayer[layerIndex] += (s[i]);
     }
     string convertedStr;
     for (int i = 0; i < numRows; ++i) {
@@ -35,8 +35,8 @@ string convert(string s, int numRows) {
     return convertedStr;
 }
 
-int main() {
-    string s = "PAYPALISHIRING";
-    cout << convert(s, 3);
-}
+//int main() {
+//    string s = "PAYPALISHIRING";
+//    cout << convert(s, 3);
+//}
 
