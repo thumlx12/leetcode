@@ -58,9 +58,9 @@ int myAtoi(string str) {
     return result;
 };
 
-int main() {
-    string x = "-2147483647";
-    string y = "2147483649";
-    cout << myAtoi(x) << endl;
-    cout << myAtoi(y) << endl;
-}
+//int main() {
+//    string x = "-2147483647";
+//    string y = "2147483649";
+//    cout << myAtoi(x) << endl;
+//    cout << myAtoi(y) << endl;
+//}
