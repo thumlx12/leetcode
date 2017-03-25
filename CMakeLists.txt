@@ -3,5 +3,5 @@ project(LeetCode)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES "3-LongestSubstringWithoutRepeatingCharacters.cpp" 4-MedianofTwoSortedArrays.cpp 5-LongestPalindromicSubstring.cpp 6-ZigzagConversion.cpp "7-ReverseInteger.cpp" "8-StringtoInteger(atoi).cpp" 10-RegularExpressionMatching.cpp local_test.cpp)
+set(SOURCE_FILES "3-LongestSubstringWithoutRepeatingCharacters.cpp" 4-MedianofTwoSortedArrays.cpp 5-LongestPalindromicSubstring.cpp 6-ZigzagConversion.cpp "7-ReverseInteger.cpp" "8-StringtoInteger(atoi).cpp" 10-RegularExpressionMatching.cpp local_test.cpp 11-ContainerWithMostWater.cpp 12-Integer2Roman.cpp 15-3Sum.cpp 16-3SumClosest.cpp)
 add_executable(LeetCode ${SOURCE_FILES})

@@ -59,12 +59,12 @@ bool isMatch(string s, string p) {
     return decideMatchRecursively(s, p, 0, 0);
 }
 
-int main() {
-    string s = "aab";
-    string p = "c*a*ab";
-    if (decideMathcDP(s, p)) {
-        cout << "match" << endl;
-    } else {
-        cout << "not match" << endl;
-    }
-}
+//int main() {
+//    string s = "aab";
+//    string p = "c*a*ab";
+//    if (decideMathcDP(s, p)) {
+//        cout << "match" << endl;
+//    } else {
+//        cout << "not match" << endl;
+//    }
+//}
