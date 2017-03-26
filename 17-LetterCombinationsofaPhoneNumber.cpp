@@ -37,10 +37,10 @@ vector<string> letterCombinations(string digits) {
     return res;
 }
 
-int main() {
-    string str = "234";
-    vector<string> res = letterCombinations(str);
-    for (int i = 0; i < res.size(); ++i) {
-        cout << res[i] << endl;
-    }
-}
+//int main() {
+//    string str = "234";
+//    vector<string> res = letterCombinations(str);
+//    for (int i = 0; i < res.size(); ++i) {
+//        cout << res[i] << endl;
+//    }
+//}
