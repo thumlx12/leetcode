@@ -20,10 +20,10 @@ struct ListNode {
 };
 
 
-ListNode *reverseList(ListNode *inlet, ListNode *outlet) {
+void reverseList(ListNode *inlet, ListNode *outlet) {
     //如果链表为空或者链表中只有一个元素
     if (inlet->next == outlet || inlet->next->next == outlet)
-        return inlet;
+        return;
     ListNode *p = inlet->next->next;
     ListNode *q = inlet->next;
     while (p != outlet) {
@@ -32,10 +32,9 @@ ListNode *reverseList(ListNode *inlet, ListNode *outlet) {
         inlet->next = p;
         p = q->next;
     }
-    return inlet;
 }
 
-ListNode *reverseGroup(ListNode *entry, int num) {
+bool reverseGroup(ListNode *entry, int num) {
     ListNode *p = entry->next;
     int actual_num = 0;
     while (p && actual_num < num) {
@@ -44,11 +43,11 @@ ListNode *reverseGroup(ListNode *entry, int num) {
     }
     ListNode *outlet = p;
     if (actual_num < num) {
-        return entry;
+        return false;
+    } else {
+        reverseList(entry, outlet);
+        return true;
     }
-    return reverseList(entry, outlet);
-
-
 }
 
 ListNode *reverseKGroup(ListNode *head, int k) {
@@ -60,30 +59,62 @@ ListNode *reverseKGroup(ListNode *head, int k) {
     bool isGetHead = false;
     ListNode *newHead = NULL;
     while (previous->next) {
-        previous = reverseGroup(previous, k);
+        bool isReversed = reverseGroup(previous, k);
         if (!isGetHead) {
             newHead = previous->next;
             isGetHead = true;
         }
-        for (int i = 0; i < k ; ++i) {
+        if (!isReversed) {
+            break;
+        }
+        for (int i = 0; i < k; ++i) {
             previous = previous->next;
         }
+
     }
     return newHead;
+}
+
+ListNode *reverseKGroup_consise(ListNode *head, int k) {
+    if (!head || !head->next || k <= 1) {
+        return head;
+    }
+    ListNode *preHead = new ListNode(-1);
+    preHead->next = head;
+    ListNode *previous = preHead;
+    ListNode *current = previous;
+    ListNode *next = NULL;
+    int num = 0;
+    while (current = current->next) {
+        num++;
+    }
+    while (num >= k) {
+        current = previous->next;
+        next = current->next;
+        for (int i = 0; i < k - 1; ++i) {
+            current->next = next->next;
+            next->next = previous->next;
+            previous->next = next;
+            next = current->next;
+        }
+        previous = current;
+        num -= k;
+    }
+    return preHead->next;
 
 }
 
-int main() {
-    ListNode *head = new ListNode(1);
-    ListNode *hp = head;
-    for (int i = 2; i <= 13; ++i) {
-        ListNode *node = new ListNode(i);
-        hp->next = node;
-        hp = hp->next;
-    }
-    ListNode *newHead = reverseKGroup(head, 3);
-    while (newHead) {
-        cout << newHead->val << '\t';
-        newHead = newHead->next;
-    }
-}
+//int main() {
+//    ListNode *head = new ListNode(1);
+//    ListNode *hp = head;
+//    for (int i = 2; i <= 16; ++i) {
+//        ListNode *node = new ListNode(i);
+//        hp->next = node;
+//        hp = hp->next;
+//    }
+//    ListNode *newHead = reverseKGroup_consise(head, 4);
+//    while (newHead) {
+//        cout << newHead->val << '\t';
+//        newHead = newHead->next;
+//    }
+//}
