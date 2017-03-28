@@ -51,9 +51,9 @@ void printEach(vector<int> &v) {
     cout << endl;
 }
 
-int main() {
-    string s1 = "barfoothefoobarmant";
-    vector<string> w1 = {"foo", "bar"};
-    vector<int> index1 = findSubstring(s1, w1);
-    printEach(index1);
-}
+//int main() {
+//    string s1 = "barfoothefoobarmant";
+//    vector<string> w1 = {"foo", "bar"};
+//    vector<int> index1 = findSubstring(s1, w1);
+//    printEach(index1);
+//}
