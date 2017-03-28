@@ -48,12 +48,12 @@ int divide(int divided, int dividor) {
     }
 }
 
-int main() {
-    unordered_map<string, bool> map1;
-    map1.insert(make_pair("boo", false));
-    map1.insert(make_pair("for", false));
-    map1.insert(make_pair("tim", false));
-    if (map1["boo"] == NULL) {
-        cout << "null" << endl;
-    }
-}
+//int main() {
+//    unordered_map<string, bool> map1;
+//    map1.insert(make_pair("boo", false));
+//    map1.insert(make_pair("for", false));
+//    map1.insert(make_pair("tim", false));
+//    if (map1["boo"] == NULL) {
+//        cout << "null" << endl;
+//    }
+//}
