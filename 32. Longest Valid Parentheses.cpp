@@ -14,31 +14,44 @@
 using namespace std;
 
 int longestValidParentheses(string s) {
-    stack<bool> pStack;
+    stack<int> pStack;
     int max_length = 0;
-    int current_length = 0;
+
     for (int i = 0; i < s.length(); ++i) {
         if (s[i] == '(') {
-            pStack.push(true);
+            pStack.push(i);
         } else {
-            if (pStack.empty()) {
-                if (max_length < current_length) {
-                    max_length = current_length;
-                    current_length = 0;
+            if (!pStack.empty()) {
+                if (s[pStack.top()] == '(') {
+                    pStack.pop();
+                } else {
+                    pStack.push(i);
                 }
             } else {
-                pStack.pop();
-                current_length += 2;
+                pStack.push(i);
             }
         }
     }
-    if (max_length < current_length) {
-        max_length = current_length;
+    if (pStack.empty()) {
+        max_length = s.length();
+    } else {
+        int st = s.length();
+        while (!pStack.empty()) {
+            if (max_length < (st - pStack.top() - -1)) {
+                max_length = st - pStack.top() - 1;
+            }
+            st = pStack.top();
+            pStack.pop();
+        }
+        if (max_length < st) {
+            max_length = st;
+        }
+
     }
     return max_length;
 }
 
 int main() {
-    string s = "()(()";
+    string s = "(()";
     cout << longestValidParentheses(s);
 }
