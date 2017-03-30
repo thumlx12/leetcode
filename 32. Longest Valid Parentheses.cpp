@@ -13,6 +13,42 @@
 
 using namespace std;
 
+int longestValidParentheses_concise(string s) {
+    if (s.length() <= 1) {
+        return 0;
+    }
+    stack<int> pStack;
+    int max_length = 0;
+    int last = -1;
+    for (int i = 0; i < s.length(); ++i) {
+        if (s[i] == '(') {
+            pStack.push(i);
+        } else {
+            if (!pStack.empty()) {
+                if (s[pStack.top()] == '(') {
+                    pStack.pop();
+                } else {
+                    if (max_length < i - last - 1) {
+                        max_length = i - last - 1;
+                        last = i;
+                    }
+                    pStack.push(i);
+                }
+            } else {
+                if (max_length < i - last - 1) {
+                    max_length = i - last - 1;
+                    last = i;
+                }
+                pStack.push(i);
+            }
+        }
+    }
+    if (max_length < s.length() - last - 1) {
+        max_length = s.length() - last - 1;
+    }
+    return max_length;
+}
+
 int longestValidParentheses(string s) {
     stack<int> pStack;
     int max_length = 0;
@@ -51,7 +87,7 @@ int longestValidParentheses(string s) {
     return max_length;
 }
 
-int main() {
-    string s = "(()";
-    cout << longestValidParentheses(s);
-}
+//int main() {
+//    string s = "(()";
+//    cout << longestValidParentheses(s);
+//}
