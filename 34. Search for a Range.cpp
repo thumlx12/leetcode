@@ -57,12 +57,12 @@ vector<int> searchRange(vector<int> &nums, int target) {
     return vector<int>{lo, hi};
 }
 
-int main() {
-    vector<int> nums = {2, 2, 2, 2, 2, 2};
-    int a = binarySearch_forward(nums, 0, nums.size() - 1, 2);
-    int b = binarySearch_backward(nums, 0, nums.size() - 1, 2);
-    cout << a << endl;
-    cout << b << endl;
-    cout << searchRange(nums, 2) << endl;
-
-}
+//int main() {
+//    vector<int> nums = {2, 2, 2, 2, 2, 2};
+//    int a = binarySearch_forward(nums, 0, nums.size() - 1, 2);
+//    int b = binarySearch_backward(nums, 0, nums.size() - 1, 2);
+//    cout << a << endl;
+//    cout << b << endl;
+//    cout << searchRange(nums, 2) << endl;
+//
+//}
