@@ -14,7 +14,6 @@
 #include <time.h>
 
 using namespace std;
-
 vector<vector<int>> sresult;
 
 void helper2(vector<int> &candidates, vector<int> &oneSet, int target, int start_point) {
@@ -42,14 +41,14 @@ vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
     return sresult;
 }
 
-int main() {
-    vector<int> candidates = {10, 1, 2, 7, 6, 1, 5};
-    combinationSum2(candidates, 8);
-    for (int i = 0; i < sresult.size(); ++i) {
-        for (int j = 0; j < sresult[i].size(); ++j) {
-            cout << sresult[i][j] << "\t";
-        }
-        cout << endl;
-
-    }
-}
+//int main() {
+//    vector<int> candidates = {10, 1, 2, 7, 6, 1, 5};
+//    combinationSum2(candidates, 8);
+//    for (int i = 0; i < sresult.size(); ++i) {
+//        for (int j = 0; j < sresult[i].size(); ++j) {
+//            cout << sresult[i][j] << "\t";
+//        }
+//        cout << endl;
+//
+//    }
+//}
