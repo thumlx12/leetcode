@@ -29,16 +29,16 @@ int firstMissingPositive(vector<int> &nums) {
     }
     return (nums.size() + 1);
 }
-
-int main() {
-    vector<vector<int>> numsv = {
-            {1,  2, 0},
-            {3,  4, -1, 1},
-            {3,  4, 5,  6, 7},
-            {4, 4, 3,  2, 1},
-            {2,  1}
-    };
-    for (int i = 0; i < numsv.size(); ++i) {
-        cout << firstMissingPositive(numsv[i]) << endl;
-    }
-}
+//
+//int main() {
+//    vector<vector<int>> numsv = {
+//            {1,  2, 0},
+//            {3,  4, -1, 1},
+//            {3,  4, 5,  6, 7},
+//            {4, 4, 3,  2, 1},
+//            {2,  1}
+//    };
+//    for (int i = 0; i < numsv.size(); ++i) {
+//        cout << firstMissingPositive(numsv[i]) << endl;
+//    }
+//}
