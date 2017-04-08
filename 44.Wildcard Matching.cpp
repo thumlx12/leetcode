@@ -15,8 +15,7 @@
 
 using namespace std;
 
-
-bool isMatch(string s, string p) {
+bool isMatch2(string s, string p) {
     bool *f[2];
     int lens = s.size();
     int lenp = p.size();
