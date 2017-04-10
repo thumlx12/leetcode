@@ -22,7 +22,9 @@ void getAllPermutation(vector<int> &nums, vector<vector<int>> &result, vector<in
     }
     for (int i = start; i < nums.size(); ++i) {
         current.push_back(nums[i]);
+        swap(nums[start], nums[i]);
         getAllPermutation(nums, result, current, start + 1);
+        swap(nums[start], nums[i]);
         current.pop_back();
     }
 }
@@ -34,8 +36,15 @@ vector<vector<int>> permute(vector<int> &nums) {
     return result;
 }
 
-int main() {
-    vector<int> nums = {1, 2, 3};
-    permute(nums);
-}
+//int main() {
+//    vector<int> nums = {1, 3, 5, 7};
+//    vector<vector<int>> result = permute(nums);
+//    for (int i = 0; i < result.size(); ++i) {
+//        for (int j = 0; j < result[i].size(); ++j) {
+//            cout << result[i][j] << '\t';
+//        }
+//        cout << endl;
+//    }
+//    cout << result.size();
+//}
 
