@@ -24,7 +24,7 @@ struct Interval {
     Interval(int s, int e) : start(s), end(e) {}
 };
 
-bool comp(Interval x, Interval y) {
+bool comp1(Interval x, Interval y) {
     return x.start < y.start || (x.start == y.start && x.end < y.end);
 }
 
@@ -34,7 +34,7 @@ vector<Interval> merge(vector<Interval> &intervals) {
     }
     const int size = intervals.size();
     vector<Interval> result;
-    sort(intervals.begin(), intervals.end(), comp);
+    sort(intervals.begin(), intervals.end(), comp1);
     int currentBegin = intervals[0].start;
     int currentEnd = intervals[0].end;
     for (int i = 1; i < size; ++i) {
@@ -52,14 +52,14 @@ vector<Interval> merge(vector<Interval> &intervals) {
     return result;
 }
 
-int main() {
-    vector<Interval> intervals = {
-            Interval(1, 4),
-            Interval(0, 4)
-    };
-    vector<Interval> merged = merge(intervals);
-    for (int i = 0; i < merged.size(); ++i) {
-        cout << "[" << merged[i].start << "," << merged[i].end << "]";
-        cout << endl;
-    }
-}
+//int main() {
+//    vector<Interval> intervals = {
+//            Interval(1, 4),
+//            Interval(0, 4)
+//    };
+//    vector<Interval> merged = merge(intervals);
+//    for (int i = 0; i < merged.size(); ++i) {
+//        cout << "[" << merged[i].start << "," << merged[i].end << "]";
+//        cout << endl;
+//    }
+//}

@@ -28,7 +28,7 @@ bool comp(Interval x, Interval y) {
     return x.start < y.start || (x.start == y.start && x.end < y.end);
 }
 
-vector<Interval> merge(vector<Interval> &intervals) {
+vector<Interval> merge1(vector<Interval> &intervals) {
     if (intervals.size() <= 1) {
         return intervals;
     }
@@ -55,5 +55,5 @@ vector<Interval> merge(vector<Interval> &intervals) {
 
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
     intervals.push_back(newInterval);
-    return merge(intervals);
+    return merge1(intervals);
 }
