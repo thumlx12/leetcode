@@ -1,5 +1,5 @@
 //
-// Created by sensetime on 4/14/17.
+// Created by sensetime on 4/15/17.
 //
 #include <string>
 #include <iostream>
@@ -15,20 +15,13 @@
 
 using namespace std;
 
-vector<int> spiralOrder(vector<vector<int>> &matrix) {
-    if (matrix.size() <= 0) {
-        return {};
-    }
-
-    int count = 0;
-    const int m = matrix.size();
-    const int n = matrix[0].size();
-    vector<int> spiralArr;//(m * n, 0);
+vector<vector<int>> generateMatrix(int n) {
+    vector<vector<int>> matrix(n, vector<int>(n, 0));
     bool isHorizon = true;
     bool isRise = true;
     int layer = 0;
-    for (int i = 0, j = 0; count < m * n; ++count) {
-        spiralArr.push_back(matrix[i][j]);
+    for (int i = 0, j = 0, count = 1; count <= n * n; ++count) {
+        matrix[i][j] = count;
         if (isHorizon) {
             if (isRise) {
                 if (j < n - layer - 1) {
@@ -47,7 +40,7 @@ vector<int> spiralOrder(vector<vector<int>> &matrix) {
             }
         } else {
             if (isRise) {
-                if (i < m - layer - 1) {
+                if (i < n - layer - 1) {
                     i++;
                 } else {
                     j--;
@@ -66,20 +59,5 @@ vector<int> spiralOrder(vector<vector<int>> &matrix) {
             }
         }
     }
-    return spiralArr;
+    return matrix;
 }
-
-//int main() {
-//    vector<vector<int>> matrix = {
-//            {0,  1,  2,  3},
-//            {4,  5,  6,  7},
-//            {8,  9,  10, 11},
-//            {12, 13, 14, 15}
-//    };
-//    vector<int> arr = spiralOrder(matrix);
-//    for (int i = 0; i < arr.size(); ++i) {
-//        cout << arr[i] << "\t";
-//    }
-//    vector<vector<int>> matrix2 = {};
-//    spiralOrder(matrix2);
-//}
