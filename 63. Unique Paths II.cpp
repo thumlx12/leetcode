@@ -51,10 +51,10 @@ int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
     return dp[current][n - 1];
 }
 
-int main() {
-    vector<vector<int>> ob = {
-            {0, 0},
-            {0, 0}
-    };
-    cout << uniquePathsWithObstacles(ob);
-}
+//int main() {
+//    vector<vector<int>> ob = {
+//            {0, 0},
+//            {0, 0}
+//    };
+//    cout << uniquePathsWithObstacles(ob);
+//}
