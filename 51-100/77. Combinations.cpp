@@ -34,13 +34,13 @@ vector<vector<int>> combine(int n, int k) {
     return result;
 }
 
-int main() {
-    vector<vector<int>> result = combine(10, 9);
-    cout << result.size() << endl << endl;
-    for (int i = 0; i < result.size(); ++i) {
-        for (int j = 0; j < result[i].size(); ++j) {
-            cout << result[i][j] << "\t";
-        }
-        cout << endl;
-    }
-}
+//int main() {
+//    vector<vector<int>> result = combine(10, 9);
+//    cout << result.size() << endl << endl;
+//    for (int i = 0; i < result.size(); ++i) {
+//        for (int j = 0; j < result[i].size(); ++j) {
+//            cout << result[i][j] << "\t";
+//        }
+//        cout << endl;
+//    }
+//}
