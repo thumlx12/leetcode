@@ -56,9 +56,9 @@ bool searchMatrix(vector<vector<int>> &matrix, int target) {
     return binaryMatrixSearch(matrix, 0, m * n - 1, target);
 }
 
-int main() {
-    vector<vector<int>> matrix = {
-            {1, 1}
-    };
-    cout << searchMatrix(matrix, 1);
-}
+//int main() {
+//    vector<vector<int>> matrix = {
+//            {1, 1}
+//    };
+//    cout << searchMatrix(matrix, 1);
+//}
