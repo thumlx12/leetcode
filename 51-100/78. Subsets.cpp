@@ -35,15 +35,15 @@ vector<vector<int>> subsets(vector<int> &nums) {
     return result;
 }
 
-int main() {
-    vector<int> nums = {1, 2, 3, 4};
-    vector<vector<int>> result = subsets(nums);
-    cout << result.size() << endl << "-------------------" << endl;
-    for (int i = 0; i < result.size(); ++i) {
-        for (int j = 0; j < result[i].size(); ++j) {
-            cout << result[i][j] << "\t";
-        }
-        cout << endl;
-    }
-}
+//int main() {
+//    vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8};
+//    vector<vector<int>> result = subsets(nums);
+//    cout << result.size() << endl << "-------------------" << endl;
+//    for (int i = 0; i < result.size(); ++i) {
+//        for (int j = 0; j < result[i].size(); ++j) {
+//            cout << result[i][j] << "\t";
+//        }
+//        cout << endl;
+//    }
+//}
 
