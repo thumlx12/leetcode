@@ -15,38 +15,29 @@
 
 using namespace std;
 
-struct BigRect {
-    int num;
-    int height;
-
-    BigRect(int x, int y) : num(x), height(y) {}
-};
-
 int largestRectangleArea(vector<int> &heights) {
     if (heights.size() <= 0) {
         return 0;
     }
-    const int size = heights.size();
-    heights.insert(heights.begin(), -1);
+    stack<int> bar;
     heights.push_back(-1);
-    stack<BigRect> s;
-    int num = 0;
-    int mHeight = INT_MAX;
-    for (int i = 1; i <= size; ++i) {
-        if (heights[i - 1] < heights[i]) {
-            num++;
-            mHeight = heights[i] < mHeight ? heights[i] : mHeight;
+    int maxArea = -1;
+    int h, w;
+    for (int i = 0; i < heights.size(); ++i) {
+        if (!bar.empty() && heights[i] <= heights[bar.top()]) {
+            while (!bar.empty() && heights[i] <= heights[bar.top()]) {
+                h = heights[bar.top()];
+                bar.pop();
+                w = bar.empty() ? i : (i - bar.top() - 1);
+                maxArea = max(maxArea, h * w);
+            }
         }
-        if (heights[i + 1] < heights[i]) {
-            BigRect oneRect(num, mHeight);
-            s.push(oneRect);
-            num = 0;
-            mHeight = INT_MAX;
-        }
+        bar.push(i);
     }
+    return maxArea;
 }
 
 int main() {
     vector<int> heights = {2, 1, 5, 6, 2, 3};
-    largestRectangleArea(heights);
+    cout << largestRectangleArea(heights);
 }
