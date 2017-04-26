@@ -36,7 +36,7 @@ vector<vector<int>> subsets(vector<int> &nums) {
 }
 
 //int main() {
-//    vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8};
+//    vector<int> nums = {1, 2, 2};
 //    vector<vector<int>> result = subsets(nums);
 //    cout << result.size() << endl << "-------------------" << endl;
 //    for (int i = 0; i < result.size(); ++i) {
