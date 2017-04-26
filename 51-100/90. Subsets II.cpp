@@ -44,15 +44,15 @@ vector<vector<int>> subsetsWithDup(vector<int> &nums) {
     return result;
 }
 
-int main() {
-    vector<int> nums = {1, 2, 2};
-    vector<vector<int>> result = subsetsWithDup(nums);
-    cout << result.size() << endl << "-------------------" << endl;
-    for (int i = 0; i < result.size(); ++i) {
-        for (int j = 0; j < result[i].size(); ++j) {
-            cout << result[i][j] << "\t";
-        }
-        cout << endl;
-    }
-}
+//int main() {
+//    vector<int> nums = {1, 2, 2};
+//    vector<vector<int>> result = subsetsWithDup(nums);
+//    cout << result.size() << endl << "-------------------" << endl;
+//    for (int i = 0; i < result.size(); ++i) {
+//        for (int j = 0; j < result[i].size(); ++j) {
+//            cout << result[i][j] << "\t";
+//        }
+//        cout << endl;
+//    }
+//}
 
