@@ -50,15 +50,15 @@ void recoverTree(TreeNode *root) {
     }
 }
 
-int main() {
-    TreeNode *n1 = new TreeNode(5);
-    TreeNode *n2 = new TreeNode(3);
-    TreeNode *n3 = new TreeNode(9);
-    TreeNode *n4 = new TreeNode(4);
-//    n1->right = n4;
-//    n1->left = n2;
-//    n2->right = n3;
-    n2->left = n1;
-    recoverTree(n2);
-    cout << endl;
-}
+//int main() {
+//    TreeNode *n1 = new TreeNode(5);
+//    TreeNode *n2 = new TreeNode(3);
+//    TreeNode *n3 = new TreeNode(9);
+//    TreeNode *n4 = new TreeNode(4);
+////    n1->right = n4;
+////    n1->left = n2;
+////    n2->right = n3;
+//    n2->left = n1;
+//    recoverTree(n2);
+//    cout << endl;
+//}

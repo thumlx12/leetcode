@@ -24,13 +24,11 @@ int largestRectangleArea(vector<int> &heights) {
     int maxArea = -1;
     int h, w;
     for (int i = 0; i < heights.size(); ++i) {
-        if (!bar.empty() && heights[i] <= heights[bar.top()]) {
-            while (!bar.empty() && heights[i] <= heights[bar.top()]) {
-                h = heights[bar.top()];
-                bar.pop();
-                w = bar.empty() ? i : (i - bar.top() - 1);
-                maxArea = max(maxArea, h * w);
-            }
+        while (!bar.empty() && heights[i] <= heights[bar.top()]) {
+            h = heights[bar.top()];
+            bar.pop();
+            w = bar.empty() ? i : (i - bar.top() - 1);
+            maxArea = max(maxArea, h * w);
         }
         bar.push(i);
     }
