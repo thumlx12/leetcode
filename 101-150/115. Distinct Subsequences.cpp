@@ -16,7 +16,6 @@
 
 using namespace std;
 
-
 int numDistinct(string s, string t) {
     const int m = s.length();
     const int n = t.length();
@@ -34,11 +33,5 @@ int numDistinct(string s, string t) {
         }
     }
     return dp[current][n];
-}
-
-int main() {
-    string s = "rabbbit";
-    string t = "rabbit";
-    cout << numDistinct(s, t);
 }
 
