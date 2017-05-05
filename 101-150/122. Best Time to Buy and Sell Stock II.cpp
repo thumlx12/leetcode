@@ -16,7 +16,7 @@
 
 using namespace std;
 
-int maxProfit(vector<int> &prices) {
+int maxProfit2(vector<int> &prices) {
     if (prices.size() <= 1) {
         return 0;
     }
