@@ -14,41 +14,42 @@
 
 using namespace std;
 
-class Solution {
+class Solution126 {
 public:
     vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict) {
         pathes.clear();
         dict.insert(start);
         dict.insert(end);
+        /*initialization*/
         vector<string> prev;
         unordered_map<string, vector<string> > traces;
-        for (unordered_set<string>::const_iterator citr = dict.begin();
-             citr != dict.end(); citr++) {
+        for (unordered_set<string>::const_iterator citr = dict.begin(); citr != dict.end(); citr++) {
             traces[*citr] = prev;
         }
 
         vector<unordered_set<string> > layers(2);
-        int cur = 0;
-        int pre = 1;
+        bool cur = false;
         layers[cur].insert(start);
         while (true) {
             cur = !cur;
-            pre = !pre;
-            for (unordered_set<string>::const_iterator citr = layers[pre].begin();
-                 citr != layers[pre].end(); citr++)
+            for (unordered_set<string>::const_iterator citr = layers[!cur].begin(); citr != layers[!cur].end(); citr++)
                 dict.erase(*citr);
             layers[cur].clear();
-            for (unordered_set<string>::const_iterator citr = layers[pre].begin();
-                 citr != layers[pre].end(); citr++) {
+            for (unordered_set<string>::const_iterator citr = layers[!cur].begin();
+                 citr != layers[!cur].end(); citr++) {
                 for (int n = 0; n < (*citr).size(); n++) {
                     string word = *citr;
-                    int stop = word[n] - 'a';
-                    for (int i = (stop + 1) % 26; i != stop; i = (i + 1) % 26) {
-                        word[n] = 'a' + i;
+                    char oldChar = (*citr)[n];
+                    for (char p = 'a'; p <= 'z'; ++p) {
+                        if (oldChar == p) {
+                            continue;
+                        }
+                        word[n] = p;
                         if (dict.find(word) != dict.end()) {
                             traces[word].push_back(*citr);
                             layers[cur].insert(word);
                         }
+                        word[n] = oldChar;
                     }
                 }
             }
@@ -61,37 +62,6 @@ public:
         buildPath(traces, path, end);
 
         return pathes;
-    }
-
-    int ladderBFS(string &beginWord, string &endWord, unordered_set<string> wordList) {
-        const int n = beginWord.length();
-        queue<string> BFS;
-        BFS.push(beginWord);
-        for (int minSteps = 2; !BFS.empty(); ++minSteps) {
-            int currentSize = BFS.size();
-            for (int t = 0; t < currentSize; ++t) {
-                string curStr = BFS.front();
-                BFS.pop();
-                for (int k = 0; k < n; ++k) {
-                    char oldChar = curStr[k];
-                    for (char p = 'a'; p <= 'z'; ++p) {
-                        if (p == oldChar) {
-                            continue;
-                        }
-                        curStr[k] = p;
-                        if (curStr == endWord) {
-                            return minSteps;
-                        }
-                        if (wordList.find(curStr) != wordList.end()) {
-                            BFS.push(curStr);
-                            wordList.erase(curStr);
-                        }
-                    }
-                    curStr[k] = oldChar;
-                }
-            }
-        }
-        return 0;
     }
 
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string> &wordList) {
@@ -129,4 +99,16 @@ private:
 
     vector<vector<string> > pathes;
 };
+//
+//int main() {
+//    vector<string> list = {"rex", "ted", "tax", "tex"};
+//    Solution126 *solu = new Solution126();
+//    vector<vector<string> > pathes = solu->findLadders("red", "tax", list);
+//    for (int i = 0; i < pathes.size(); ++i) {
+//        for (int j = 0; j < pathes[i].size(); ++j) {
+//            cout << pathes[i][j] << "\t";
+//        }
+//        cout << endl;
+//    }
+//}
 
