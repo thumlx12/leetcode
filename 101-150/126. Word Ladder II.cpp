@@ -7,61 +7,77 @@
 #include <algorithm>
 #include <stack>
 #include <unordered_map>
+#include <unordered_set>
 #include <stdlib.h>
 #include <time.h>
 #include <queue>
-#include <bits/unordered_set.h>
 
 using namespace std;
 
-class Solution126 {
+class Solution {
 public:
-    vector<vector<string> > findLadders(string start, string end, unordered_set<string> &dict) {
-        pathes.clear();
-        dict.insert(start);
-        dict.insert(end);
-        /*initialization*/
-        vector<string> prev;
-        unordered_map<string, vector<string> > traces;
-        for (unordered_set<string>::const_iterator citr = dict.begin(); citr != dict.end(); citr++) {
-            traces[*citr] = prev;
-        }
+    vector<vector<string>> routes;
 
-        vector<unordered_set<string> > layers(2);
-        bool cur = false;
-        layers[cur].insert(start);
-        while (true) {
-            cur = !cur;
-            for (unordered_set<string>::const_iterator citr = layers[!cur].begin(); citr != layers[!cur].end(); citr++)
-                dict.erase(*citr);
-            layers[cur].clear();
-            for (unordered_set<string>::const_iterator citr = layers[!cur].begin();
-                 citr != layers[!cur].end(); citr++) {
-                for (int n = 0; n < (*citr).size(); n++) {
-                    string word = *citr;
-                    char oldChar = (*citr)[n];
-                    for (char p = 'a'; p <= 'z'; ++p) {
-                        if (oldChar == p) {
+    vector<vector<string>> findLadders(string &begin, string &end, unordered_set<string> &dict) {
+        dict.insert(begin);
+        dict.insert(end);
+
+        unordered_map<string, vector<string>> prevs_map;
+        vector<string> prev;
+        for (unordered_set<string>::const_iterator iter = dict.begin(); iter != dict.end(); ++iter) {
+            prevs_map[*iter] = prev;
+        }
+        vector<unordered_set<string>> layerTwo(2);
+        bool current = false;
+        layerTwo[current].insert(begin);
+        while (!prevs_map[end].size()) {
+            current = !current;
+            layerTwo[current].clear();
+            for (unordered_set<string>::const_iterator iter = layerTwo[!current].begin();
+                 iter != layerTwo[!current].end(); ++iter) {
+                dict.erase(*iter);
+            }
+            for (unordered_set<string>::const_iterator iter = layerTwo[!current].begin();
+                 iter != layerTwo[!current].end(); ++iter) {
+                string currentWord = *iter;
+                for (int i = 0; i < currentWord.length(); ++i) {
+                    char oldChar = currentWord[i];
+                    for (char c = 'a'; c <= 'z'; ++c) {
+                        if (oldChar == c) {
                             continue;
                         }
-                        word[n] = p;
-                        if (dict.find(word) != dict.end()) {
-                            traces[word].push_back(*citr);
-                            layers[cur].insert(word);
+                        currentWord[i] = c;
+                        if (dict.find(currentWord) != dict.end()) {
+                            prevs_map[currentWord].push_back(*iter);
+                            layerTwo[current].insert(currentWord);
                         }
-                        word[n] = oldChar;
                     }
+                    currentWord[i] = oldChar;
                 }
             }
-            if (layers[cur].size() == 0)
-                return pathes;
-            if (layers[cur].count(end))
-                break;
+            if (layerTwo[current].size() <= 0) {
+                return routes;
+            }
         }
-        vector<string> path;
-        buildPath(traces, path, end);
+        vector<string> route;
+        route.push_back(end);
+        findRoutesDFS(end, prevs_map, route, routes);
+        return routes;
+    }
 
-        return pathes;
+    void findRoutesDFS(string &str, unordered_map<string, vector<string>> &prevs_map,
+                       vector<string> &oneRoute, vector<vector<string>> &routes) {
+        if (prevs_map[str].size() <= 0) {
+            vector<string> trueRoute = oneRoute;
+            reverse(trueRoute.begin(), trueRoute.end());
+            routes.push_back(trueRoute);
+            return;
+        }
+        for (int i = 0; i < prevs_map[str].size(); ++i) {
+            oneRoute.push_back(prevs_map[str][i]);
+            findRoutesDFS(prevs_map[str][i], prevs_map, oneRoute, routes);
+            oneRoute.pop_back();
+        }
     }
 
     vector<vector<string>> findLadders(string beginWord, string endWord, vector<string> &wordList) {
@@ -72,43 +88,19 @@ public:
         if (dict.find(endWord) != dict.end()) {
             return findLadders(beginWord, endWord, dict);
         } else {
-            return pathes;
+            return routes;
         }
     }
-
-private:
-    void buildPath(unordered_map<string, vector<string> > &traces,
-                   vector<string> &path, const string &word) {
-        if (traces[word].size() == 0) {
-            path.push_back(word);
-            vector<string> curPath = path;
-            reverse(curPath.begin(), curPath.end());
-            pathes.push_back(curPath);
-            path.pop_back();
-            return;
-        }
-
-        const vector<string> &prevs = traces[word];
-        path.push_back(word);
-        for (vector<string>::const_iterator citr = prevs.begin();
-             citr != prevs.end(); citr++) {
-            buildPath(traces, path, *citr);
-        }
-        path.pop_back();
-    }
-
-    vector<vector<string> > pathes;
 };
-//
-//int main() {
-//    vector<string> list = {"rex", "ted", "tax", "tex"};
-//    Solution126 *solu = new Solution126();
-//    vector<vector<string> > pathes = solu->findLadders("red", "tax", list);
-//    for (int i = 0; i < pathes.size(); ++i) {
-//        for (int j = 0; j < pathes[i].size(); ++j) {
-//            cout << pathes[i][j] << "\t";
-//        }
-//        cout << endl;
-//    }
-//}
 
+// int main() {
+//     vector<string> list = {"rex", "ted", "tax", "tex"};
+//     Solution *solu = new Solution();
+//     vector<vector<string> > pathes = solu->findLadders("red", "tax", list);
+//     for (int i = 0; i < pathes.size(); ++i) {
+//         for (int j = 0; j < pathes[i].size(); ++j) {
+//             cout << pathes[i][j] << "\t";
+//         }
+//         cout << endl;
+//     }
+// }
