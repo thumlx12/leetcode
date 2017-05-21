@@ -31,7 +31,7 @@ public:
     }
 };
 
-int main() {
-    int a = 10;
-    cout << ~a;
-}
+//int main() {
+//    int a = 10;
+//    cout << ~a;
+//}
