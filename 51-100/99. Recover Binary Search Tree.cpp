@@ -62,3 +62,11 @@ void recoverTree(TreeNode *root) {
 //    recoverTree(n2);
 //    cout << endl;
 //}
+
+//int main() {
+//    string s1 = "{\"type\":\"record\",\"name\":\"Datum\",\"namespace\":\"com.sensetime.commons.io\",\"fields\":[{\"name\":\"group\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"status\",\"type\":\"int\"},{\"name\":\"meta\",\"type\":[\"string\",\"null\"]},{\"name\":\"bin\",\"type\":[\"bytes\",\"null\"]}]}";
+//    string s2 = "{\"type\":\"record\",\"name\":\"Datum\",\"namespace\":\"com.sensetime.commons.io\",\"fields\":[{\"name\":\"group\",\"type\":\"string\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"status\",\"type\":\"int\"},{\"name\":\"meta\",\"type\":[\"string\",\"null\"]},{\"name\":\"bin\",\"type\":[\"bytes\",\"null\"]}]}";
+//    if(s1 == s2){
+//        cout<<"euqal!";
+//    }
+//}

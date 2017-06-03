@@ -1,3 +1,18 @@
+#include <string>
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <climits>
+#include <math.h>
+#include <algorithm>
+#include <stack>
+#include <unordered_map>
+#include <stdlib.h>
+#include <time.h>
+#include <map>
+
+using namespace std;
+
 class Solution154 {
 public:
     int findPivot_dup(vector<int> &nums, int lo, int hi) {

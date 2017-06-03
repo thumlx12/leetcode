@@ -16,6 +16,7 @@
 #include <queue>
 #include <list>
 #include <bits/unordered_set.h>
+#include <map>
 
 using namespace std;
 
@@ -28,8 +29,8 @@ struct Point {
     Point(int a, int b) : x(a), y(b) {}
 };
 
-int gcd(int a, int b) {
-    return (b == 0) ? a : gcd(b, a % b);
+int GCD(int a, int b) {
+    return (b == 0) ? a : GCD(b, a % b);
 }
 
 int maxPoints(vector<Point> &points) {
@@ -45,7 +46,7 @@ int maxPoints(vector<Point> &points) {
             }
             int dx = points[i].x - points[j].x;
             int dy = points[i].y - points[j].y;
-            int gcd = gcd(dy, dx);
+            int gcd = GCD(dy, dx);
             countTable[{dx / gcd, dy / gcd}]++;
         }
         maxPoint = max(maxPoint, samePoint);
