@@ -16,7 +16,11 @@
 
 using namespace std;
 
-int maxProfitKTrans(vector<int> &prices, const int k) {
+int maxProfitKTrans(vector<int> &prices, int k) {
+    if (prices.size() <= 1) {
+        return 0;
+    }
+    k = k < (prices.size() - 1) ? k : (prices.size() - 1);
     const int n = prices.size();
     vector<vector<int>> dp(2, vector<int>(n, 0));
     bool current = false;
@@ -38,8 +42,9 @@ int maxProfit3(vector<int> &prices) {
     }
     return maxProfitKTrans(prices, 2);
 }
+
 //
-//int main() {
-//    vector<int> prices = { 3, 3};
-//    cout << maxProfit3(prices);
-//}
+int main() {
+    int k = 12;
+    cout << ceil((float) k / 2);
+}
