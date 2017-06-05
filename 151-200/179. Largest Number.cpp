@@ -77,9 +77,14 @@ public:
         return largestNum;
     }
 };
-//
+
 //int main() {
 //    Solution179 *solu;
 //    vector<int> nums = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 //    cout << solu->largestNumber(nums);
+//    unordered_map<string, int> seqMap;
+//    for (unordered_map<string,int>::const_iterator iter = seqMap.begin(); iter != seqMap.end(); ++iter) {
+//        (*iter).second
+//
+//    }
 //}
