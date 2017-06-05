@@ -44,7 +44,7 @@ int maxProfit3(vector<int> &prices) {
 }
 
 //
-int main() {
-    int k = 12;
-    cout << ceil((float) k / 2);
-}
+//int main() {
+//    int k = 12;
+//    cout << ceil((float) k / 2);
+//}
