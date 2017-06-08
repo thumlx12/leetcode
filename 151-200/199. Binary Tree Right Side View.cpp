@@ -1,6 +1,29 @@
 //
 // Created by maolixuan on 2017/6/5.
 //
+#include <string>
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <climits>
+#include <math.h>
+#include <algorithm>
+#include <stack>
+#include <unordered_map>
+#include <stdlib.h>
+#include <time.h>
+#include <map>
+#include <bitset>
+
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 
 class Solution199 {
 public:
