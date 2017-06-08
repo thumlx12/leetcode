@@ -56,8 +56,8 @@ public:
         }
         int minLength = INT_MAX;
         for (int i = 0; i <= nums.size(); ++i) {
-            int right = binarySeach(sumArr[i] + s, i, nums.size(), nums);
-            if (nums[right] < sumArr[i] + s) {
+            int right = binarySeach(sumArr[i] + s, i, nums.size(), sumArr);
+            if (sumArr[right] < sumArr[i] + s) {
                 break;
             }
             minLength = min(minLength, right - i);
@@ -66,10 +66,12 @@ public:
     }
 
     int minSubArrayLen(int s, vector<int> &nums) {
-        return Ologn(s,nums);
+        return Ologn(s, nums);
     }
 };
 
-int main(){
-
-}
+//int main() {
+//    vector<int> nums = {2, 3, 1, 2, 4, 3};
+//    Solution209 *solu;
+//    cout<<solu->minSubArrayLen(7,nums);
+//}
