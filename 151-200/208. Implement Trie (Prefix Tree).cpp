@@ -113,17 +113,17 @@ int binarySeach(int target, int lo, int hi, vector<int> &nums) {
     }
 }
 
-int main() {
-//    Trie *obj = new Trie();
-//    obj->insert("app");
-//    obj->insert("apple");
-//    obj->insert("beer");
-//    obj->insert("add");
-//    obj->insert("jam");
-//    obj->insert("rental");
-//    cout<<obj->search("apps");
-//    cout<<obj->search("app");
-    vector<int> nums = {0, 2, 5, 6, 8, 12, 13};
-    cout << nums[binarySeach(7, 0, nums.size() - 1, nums)];
-}
+//int main() {
+////    Trie *obj = new Trie();
+////    obj->insert("app");
+////    obj->insert("apple");
+////    obj->insert("beer");
+////    obj->insert("add");
+////    obj->insert("jam");
+////    obj->insert("rental");
+////    cout<<obj->search("apps");
+////    cout<<obj->search("app");
+//    vector<int> nums = {0, 2, 5, 6, 8, 12, 13};
+//    cout << nums[binarySeach(7, 0, nums.size() - 1, nums)];
+//}
 

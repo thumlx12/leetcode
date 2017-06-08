@@ -1,6 +1,22 @@
 //
 // Created by sensetime on 6/8/17.
 //
+#include <string>
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <climits>
+#include <math.h>
+#include <algorithm>
+#include <stack>
+#include <unordered_map>
+#include <stdlib.h>
+#include <time.h>
+#include <map>
+#include <bitset>
+
+using namespace std;
+
 class Solution209 {
 public:
     int On(int s, vector<int> &nums) {
@@ -50,6 +66,10 @@ public:
     }
 
     int minSubArrayLen(int s, vector<int> &nums) {
-
+        return Ologn(s,nums);
     }
 };
+
+int main(){
+
+}
