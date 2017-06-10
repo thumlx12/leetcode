@@ -18,69 +18,70 @@
 
 using namespace std;
 
-//int longestPalindromePrefix(string s, int end) {
-//    int j = 0;
-//    for (int i = end - 1; 0 <= i; --i) {
-//        if (s[i] == s[j]) {
-//            ++j;
-//        }
-//    }
-//    if (j == end) {
-//        return end;
-//    } else {
-//        return longestPalindromePrefix(s, j);
-//    }
-//}
-//
-//string shortestPalindrome(string s) {
-//    int longest = longestPalindromePrefix(s, s.length());
-//    string reversePart = s.substr(longest);
-//    reverse(reversePart.begin(),reversePart.end());
-//    return reversePart+s;
-//}
+class Solution214 {
+public:
 
-void makeNext(string& s, vector<int>& next) {
-    next[0] = -1;
-    for (int i = 0, j = -1; i < s.size(); ) {
-        if (j == -1 || s[i] == s[j]) {
-            ++i; ++j;
-            if (i != s.size()) {
-                if (s[i] == s[j]) {
-                    next[i] = next[j];
-                } else {
-                    next[i] = j;
+    int longestPalindromePrefix(string s, int end) {
+        int j = 0;
+        for (int i = end - 1; 0 <= i; --i) {
+            if (s[i] == s[j]) {
+                ++j;
+            }
+        }
+        if (j == end) {
+            return end;
+        } else {
+            return longestPalindromePrefix(s, j);
+        }
+    }
+
+    vector<int> makeNext(string &s) {
+        vector<int> next;
+        next.push_back(-1);
+        for (int i = 0, j = -1; i < s.length();) {
+            if (j == -1 || s[i] == s[j]) {
+                j++;
+                next.push_back(next[j] + 1);
+                i++;
+            } else {
+                j = next[j];
+            }
+        }
+        return next;
+    }
+
+    int longestPalindromePrefix(string s) {
+        string reverse_s = s;
+        reverse(reverse_s.begin(), reverse_s.end());
+        vector<int> next = makeNext(s);
+        for (int i = 0, j = 0; i < reverse_s.length();) {
+            if (j == -1 || reverse_s[i] == s[j]) {
+                ++i;
+                ++j;
+                if (i == reverse_s.length()) {
+                    return j;
                 }
+            } else {
+                j = next[j];
             }
-        } else {
-            j = next[j];
-        }
-    }
-}
-
-string shortestPalindrome(string s) {
-    if (s.empty()) return s;
-    string reverse_s(s);
-    reverse(reverse_s.begin(), reverse_s.end());
-    int mark;
-    vector<int> next(s.size());
-    makeNext(s, next);
-
-    for (int i = 0, j = 0; i < reverse_s.size(); ) {
-        if (j == -1 || reverse_s[i] == s[j]) {
-            ++i; ++j;
-            if (i == reverse_s.size()) {
-                mark = j;
-            }
-        } else {
-            j = next[j];
         }
     }
 
-    return mark == s.size() ? reverse_s : reverse_s + s.substr(mark);
+    string shortestPalindrome(string s) {
+        if (s.empty()) return s;
+        int longestPre1 = longestPalindromePrefix(s);
+        int longestPre2 = longestPalindromePrefix(s, s.length());
+        string addPart = s.substr(longestPre1);
+        reverse(addPart.begin(), addPart.end());
+        return addPart + s;
+    }
+
+};
+
+int main() {
+    string str = "aa";
+    vector<int> next(2);
+    Solution214 *solu;
+    solu->makeNext(str, next);
+    cout << next[0] << "\t" << next[1];
 }
-
-
-//int main() {
-//    string str = "avadr";
-//    cout << shortestPalindrome(str);
-//}
