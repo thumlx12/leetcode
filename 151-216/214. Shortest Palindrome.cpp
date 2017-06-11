@@ -35,42 +35,45 @@ public:
         }
     }
 
-    vector<int> makeNext(string &s) {
-        vector<int> next;
-        next.push_back(-1);
-        for (int i = 0, j = -1; i < s.length();) {
-            if (j == -1 || s[i] == s[j]) {
+    int *makeNext(string P) {
+        int m = P.length();
+        int j = 0;
+        int *N = new int[m];
+        int t = N[0] = -1;
+        while (j < m - 1) {
+            if (0 > t || P[j] == P[t]) {
                 j++;
-                next.push_back(next[j] + 1);
-                i++;
+                t++;
+                N[j] = (P[j] == P[t]) ? N[t] : t;
             } else {
-                j = next[j];
+                t = N[t];
             }
         }
-        return next;
+        return N;
     }
 
     int longestPalindromePrefix(string s) {
         string reverse_s = s;
         reverse(reverse_s.begin(), reverse_s.end());
-        vector<int> next = makeNext(s);
+        int *next = makeNext(s);
+        int mark = 0;
         for (int i = 0, j = 0; i < reverse_s.length();) {
-            if (j == -1 || reverse_s[i] == s[j]) {
+            if (j < 0 || reverse_s[i] == s[j]) {
                 ++i;
                 ++j;
                 if (i == reverse_s.length()) {
-                    return j;
+                    mark = j;
                 }
             } else {
                 j = next[j];
             }
         }
+        return mark;
     }
 
     string shortestPalindrome(string s) {
         if (s.empty()) return s;
         int longestPre1 = longestPalindromePrefix(s);
-        int longestPre2 = longestPalindromePrefix(s, s.length());
         string addPart = s.substr(longestPre1);
         reverse(addPart.begin(), addPart.end());
         return addPart + s;
@@ -78,10 +81,8 @@ public:
 
 };
 
-int main() {
-    string str = "aa";
-    vector<int> next(2);
-    Solution214 *solu;
-    solu->makeNext(str, next);
-    cout << next[0] << "\t" << next[1];
-}
+//int main() {
+//    string str = "abbacd";
+//    Solution214 *solu;
+//    cout << solu->shortestPalindrome(str);
+//}
