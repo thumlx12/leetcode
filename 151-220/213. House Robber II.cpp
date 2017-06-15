@@ -36,12 +36,9 @@ public:
         if (nums.size() == 1) {
             return nums[0];
         }
-
         vector<int> subNums1(nums.begin(), nums.end() - 1);
         vector<int> subNums2(nums.begin() + 1, nums.end());
         return max(rob_orginal(subNums1), rob_orginal(subNums2));
-
-
     }
 };
 
