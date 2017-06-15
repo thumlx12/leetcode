@@ -22,5 +22,8 @@ using namespace std;
 class Solution220 {
 public:
     bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
+        if (k <= 0 || t < 0) {
+            return false;
+        }
     }
 };
