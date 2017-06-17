@@ -19,11 +19,17 @@
 
 using namespace std;
 
+class heapCmp {
+public:
+    bool operator()(pair<int, int> a, pair<int, int> b) {
+        return a.second < b.second;
+    }
+};
+
 class Solution218 {
 public:
-    unordered_set<int> deletedHeight;
 
-    static bool pairCmp(pair<int, int> a, pair<int, int> b) {
+    static bool keyPointCmp(pair<int, int> a, pair<int, int> b) {
         if (a.first < b.first) {
             return true;
         }
@@ -34,39 +40,41 @@ public:
     }
 
     vector<pair<int, int>> getSkyline(vector<vector<int>> &buildings) {
-        vector<pair<int, int>> ans;
-        if (buildings.size() <= 0) {
-            return ans;
-        }
-        vector<pair<int, int>> criticalPoints;
+        vector<pair<int, int>> skylines;
+        priority_queue<pair<int, int>, vector<pair<int, int>>, heapCmp> maxHeightHeap;
+        vector<pair<int, int>> keyPoints;
+        map<pair<int, int>, int> left_height2right;
         for (int i = 0; i < buildings.size(); ++i) {
-            criticalPoints.push_back({buildings[i][0], -buildings[i][2]});
-            criticalPoints.push_back({buildings[i][1], buildings[i][2]});
+            keyPoints.push_back({buildings[i][0], -buildings[i][2]});
+            keyPoints.push_back({buildings[i][1], buildings[i][2]});
+            left_height2right[{buildings[i][0], buildings[i][2]}] = buildings[i][1];
         }
-        sort(criticalPoints.begin(), criticalPoints.end(), pairCmp);
-        priority_queue<int> heightHeap;
-        heightHeap.push(0);
-        int prev = 0;
-        for (int i = 0; i < criticalPoints.size(); ++i) {
-            if (criticalPoints[i].second < 0) {
-                heightHeap.push(-criticalPoints[i].second);
+        sort(keyPoints.begin(), keyPoints.end(), keyPointCmp);
+        maxHeightHeap.push({-1, 0});
+        pair<int, int> prevTop = {-1, 0};
+        pair<int, int> curTop;
+        unordered_set<int> outdatedBuildings;
+        for (int i = 0; i < keyPoints.size(); ++i) {
+            if (keyPoints[i].second < 0) {
+                maxHeightHeap.push({keyPoints[i].first, -keyPoints[i].second});
             } else {
-                deletedHeight.insert(criticalPoints[i].second);
+                outdatedBuildings.insert(keyPoints[i].first);
             }
-            int currentPeak;
-            while (deletedHeight.count(currentPeak = heightHeap.top())) {
-                deletedHeight.erase(currentPeak);
-                heightHeap.pop();
+            while (true) {
+                curTop = maxHeightHeap.top();
+                int rightEdge = left_height2right[{curTop.first, curTop.second}];
+                if (outdatedBuildings.count(rightEdge)) {
+                    maxHeightHeap.pop();
+                } else {
+                    break;
+                }
             }
-            if (prev != currentPeak) {
-                ans.push_back({criticalPoints[i].first, currentPeak});
-                prev = currentPeak;
+            if (curTop.second != prevTop.second) {
+                skylines.push_back({keyPoints[i].first, curTop.second});
+                prevTop = curTop;
             }
         }
-        if (ans.back().first != criticalPoints.back().first) {
-            ans.push_back({criticalPoints.back().first, 0});
-        }
-        return ans;
+        return skylines;
     }
 };
 
@@ -86,8 +94,14 @@ public:
 //            {15, 20, 12},
 //            {20, 25, 7}
 //    };
+//    vector<vector<int>> buildings3{
+//            {0, 2, 3},
+//            {2, 5, 3},
+//
+//    };
+//
 //    Solution218 *solu = new Solution218();
-//    vector<pair<int, int>> skyline = solu->getSkyline(buildings2);
+//    vector<pair<int, int>> skyline = solu->getSkyline(buildings3);
 //    for (int i = 0; i < skyline.size(); ++i) {
 //        cout << skyline[i].first << "\t" << skyline[i].second << endl;
 //    }
