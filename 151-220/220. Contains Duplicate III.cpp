@@ -22,14 +22,32 @@ using namespace std;
 class Solution220 {
 public:
 
-    bool t_barrelSort(vector<int> &nums, int k, long long t) {
+    bool findDupInNeighbors(unordered_map<long long, vector<pair<int, int>>> &barrelMap, long long target,
+                            long long neighbour, int k, long long t) {
+        if (!barrelMap.count(neighbour)) {
+            return false;
+        }
+        for (int p = 0; p < barrelMap[target].size(); ++p) {
+            long long originValue = barrelMap[target][p].first;
+            long long originIdx = barrelMap[target][p].second;
+            for (int q = 0; q < barrelMap[neighbour].size(); ++q) {
+                long long neighValue = barrelMap[neighbour][q].first;
+                long long neighIdx = barrelMap[neighbour][q].second;
+                if (abs(neighValue - originValue) <= t && abs(neighIdx - originIdx) <= k) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    bool findDupWithBarrel(vector<int> &nums, int k, long long t) {
         int minNum = nums[0];
         int maxNum = nums[0];
         for (int i = 1; i < nums.size(); ++i) {
             minNum = min(minNum, nums[i]);
             maxNum = max(maxNum, nums[i]);
         }
-        unsigned long long barrelNum = ceil(((double) maxNum - minNum + 1) / (t + 1));
         unordered_map<long long, vector<pair<int, int>>> barrelMap;
         for (int i = 0; i < nums.size(); ++i) {
             long long idx = ((long long) nums[i] - minNum) / (t + 1);
@@ -45,31 +63,8 @@ public:
                 }
             }
             long long key = iter->first;
-            if (barrelMap.count(key - 1)) {
-                for (int p = 0; p < iter->second.size(); ++p) {
-                    long long originValue = iter->second[p].first;
-                    long long originIdx = iter->second[p].second;
-                    for (int q = 0; q < barrelMap[key - 1].size(); ++q) {
-                        long long lastValue = barrelMap[key - 1][q].first;
-                        long long lastIdx = barrelMap[key - 1][q].second;
-                        if (abs(originIdx - lastIdx) <= k && originValue - lastValue <= t) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            if (barrelMap.count(key + 1)) {
-                for (int p = 0; p < iter->second.size(); ++p) {
-                    long long originValue = iter->second[p].first;
-                    long long originIdx = iter->second[p].second;
-                    for (int q = 0; q < barrelMap[key + 1].size(); ++q) {
-                        long long nextValue = barrelMap[key + 1][q].first;
-                        long long nextIdx = barrelMap[key + 1][q].second;
-                        if (abs(originIdx - nextIdx) <= k && nextValue - originValue <= t) {
-                            return true;
-                        }
-                    }
-                }
+            if (findDupInNeighbors(barrelMap, key, key + 1, k, t)) {
+                return true;
             }
         }
         return false;
@@ -102,7 +97,7 @@ public:
             return containsNearbyDuplicate(nums, k);
         }
         int target = (long long) t;
-        return t_barrelSort(nums, k, target);
+        return findDupWithBarrel(nums, k, target);
     }
 };
 //
