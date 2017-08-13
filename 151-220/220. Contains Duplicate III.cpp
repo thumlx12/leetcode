@@ -101,8 +101,8 @@ public:
     }
 };
 //
-//int main() {
-//    vector<int> nums = {-1, 2147483647};
-//    Solution220 *solu = new Solution220();
-//    cout << solu->containsNearbyAlmostDuplicate(nums, 1, 2147483647);
-//}
+int main() {
+    vector<int> nums = {-1, 2147483647};
+    Solution220 *solu = new Solution220();
+    cout << solu->containsNearbyAlmostDuplicate(nums, 1, 2147483647);
+}
